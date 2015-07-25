@@ -8,7 +8,7 @@ class Solution:
                 if height[i] >= j[0]:
                     j.append(height[i])
                 else:
-                    print temp
+                    #print temp
                     result = max(result,j[0]*len(j))
                     temp.remove(j)
             temp.append([height[i]])
@@ -19,14 +19,11 @@ class Solution:
                 if height[i] >= j[0]:
                     j.append(height[i])
                 else:
-                    print temp
+                    #print temp
                     result = max(result,j[0]*len(j))
                     temp.remove(j)
             temp.append([height[i]])
         return result
 
 a = Solution()
-test = []
-for i in xrange(1500):
-    test.append(i)
 print a.largestRectangleArea([1,3,2,7,5,8,4,9])
