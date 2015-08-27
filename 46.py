@@ -1,23 +1,13 @@
 class Solution:
     def permute(self, nums):
-        def factorial(x):
-            y = 1
-            for i in xrange(1,x+1):
-                y *= i
-            return y
-        result = []
-        n = len(nums)
-        for i in xrange(factorial(n)):
-            result.append([])
-        for i in xrange(n):
-            idx = i
-            for j in xrange(factorial(n)):
-                if idx >= n:
-                    idx = i+
-                result[i][idx+j] = nums[i]
-                idx += 1
-        return result
-            
+        def f(x):
+            return x * f(x-1) if x >1 else 1
+        if len(nums) == 1:
+            return [nums]
+        if len(nums) == 2:
+            return [nums,[nums[1],nums[0]]]
+        else:
+
 a = Solution()
 print a.permute([1,2,3])
         

@@ -1,22 +1,23 @@
 class Solution:
-    # @param num, a list of integer
-    # @return an integer
     def longestConsecutive(self, num):
-        num.sort()
+        dic = {}
+        duplicate = {}
+        for i in num:
+            if i not in duplicate:
+                duplicate[i] = 0
+                if i-1 in dic and i+1 in dic:
+                    dic[dic[i-1]],dic[dic[i+1]] = dic[i+1],dic[i-1]
+                elif i-1 in dic:
+                    dic[dic[i-1]],dic[i] = i,dic[i-1]
+                elif i+1 in dic:
+                    dic[dic[i+1]],dic[i] = i,dic[i+1]
+                else:
+                    dic[i] = i
         result = 0
-        temp = [num[0]]
-        for i in range(1,len(num)):
-            if num[i] - num[i-1] > 1:
-                if len(temp) > result:
-                    result = len(temp)
-                temp = [num[i]]
-            elif num[i] == num[i-1]:
-                continue
-            else:
-                temp.append(num[i])
-        if len(temp) >  result:
-            result = len(temp)
+        for k,v in dic.iteritems():
+            result = max(result,abs(k-v)+1)
         return result
 
 a = Solution()
-print a.longestConsecutive([1,2,0,1])
+print a.longestConsecutive([-2,-1,0,1,2,3,4,5,6])
+            
