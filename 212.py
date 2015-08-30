@@ -30,6 +30,7 @@ class Solution(object):
                     if temp_board[i][j] == word[0]:
                         if dfs(i,j,word[1:]):
                             result.append(word)
+           
         return result
 
 a = Solution()
