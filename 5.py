@@ -1,10 +1,3 @@
-def isPalindrome(s):
-    while len(s) >= 2:
-        if s[0] != s[-1]:
-            return False
-        else:
-            s = s[1:len(s)-1]
-    return True
 class Solution:
     def longestPalindrome(self, s):
         for i in xrange(len(s),0,-1):
