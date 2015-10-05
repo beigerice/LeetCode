@@ -1,14 +1,24 @@
 class Solution:
     def findKthLargest(self, nums, k):
-        if len(a) > len(b):
-            return findkth(b,a,k)
-        if len(a) == 0:
-            return b[k-1]
-        if k == 1:
-            return min(a[0],b[0])
-        parta = min(k//2,len(a))
-        partb = k-parta
-        if a[parta-1] < b[partb-1]:
-            return findkth(a[parta:],b,k-parta)
-        else:
-            return findkth(a,b[partb:],k-partb)        
+        def bs(n):
+            low = 0
+            high = k-1
+            while low <= high:
+                mid = (low+high)//2
+                if result[mid] < n:
+                    low = mid+1
+                elif result[mid] > n:
+                    high = mid-1
+                else:
+                    return mid
+            return low
+        result = [0]*k
+        for i in xrange(k):
+            result[i] = nums[i]
+        result.sort()
+        for i in xrange(k,len(nums)):
+            if nums[i] > result[0]:
+                idx = bs(nums[i])
+                result.insert(bs(nums[i]),nums[i])
+                result.pop(0)
+        return result[0]       
